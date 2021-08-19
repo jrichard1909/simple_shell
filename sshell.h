@@ -1,5 +1,5 @@
 #ifndef SSHELL_H
-#define SSHELL.H
+#define SSHELL_H
 
 #include <string.h>
 #include <sys/types.h>
@@ -10,6 +10,9 @@
 #include <sys/types.h>
 #include <sys/types.h>
 #include <sys/types.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
 
 
 typedef struct variables
@@ -20,8 +23,12 @@ typedef struct variables
 
 typedef struct builtins
 {
-	void (*f)(vars_t *)
-} builtins_t
+	void (*f)(vars_t *);
+} builtins_t;
+
+char **_str_tokens(char *buffer, char *delimiter);
+char **_realloc(char **ptr, unsigned int size_ini, unsigned int size_fin);
+int _execve(vars_t *vars, int num);
 
 
 #endif
