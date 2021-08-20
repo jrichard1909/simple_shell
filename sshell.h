@@ -27,8 +27,12 @@ typedef struct builtins
 } builtins_t;
 
 char **_str_tokens(char *buffer, char *delimiter);
-char **_realloc(char **ptr, unsigned int size_ini, unsigned int size_fin);
-int _execve(vars_t *vars, int num);
-
+char *_realloc(char *ptr, unsigned int size_ini, unsigned int size_fin);
+int _execve(vars_t *vars, int num, char **env);
+char *get_path(char *cmd, char **env);
+char *val_path(char **tokens, char *cmd);
+char *_strcat(char *dest, char *src);
+char *_strdup(char *str);
+int _strcmp(char *s1, char *s2);
 
 #endif

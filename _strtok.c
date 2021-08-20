@@ -25,7 +25,7 @@ char **_str_tokens(char *buffer, char *delimiter)
 		i++;
 		if (i == max_count)
 		{
-			token = _realloc(token, max_count, 2 * max_count);
+			/*token = _realloc(token, max_count, 2 * max_count);*/
 			if (token == NULL)
 				return (NULL);
 		}

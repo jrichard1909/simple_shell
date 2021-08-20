@@ -10,7 +10,7 @@
 
 int main(int ac, char **av, char **env)
 {
-	int len, countline = 0;
+	int len, countline = 0, exit_s;
 	vars_t vars ={NULL, NULL};
 	size_t buff_size = 0;
 	
@@ -21,9 +21,11 @@ int main(int ac, char **av, char **env)
 		if(len > 1)
 			vars.buffer[len - 1] = '\0';
 		vars.array_tokens = _str_tokens(vars.buffer, " ");
-		_execve(&vars, countline);
+		exit_s = _execve(&vars, countline, env);
 		write(STDOUT_FILENO, "$ ", 2);
 
 	}
+	write(STDOUT_FILENO, "\n", 1);
+
 	return (0);
 }

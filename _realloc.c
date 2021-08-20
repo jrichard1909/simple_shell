@@ -8,9 +8,9 @@
  * return: new_ptr
  */
 
-char **_realloc(char **ptr, unsigned int size_ini, unsigned int size_fin)
+char *_realloc(char *ptr, unsigned int size_ini, unsigned int size_fin)
 {
-	char **new_ptr;
+	char *new_ptr;
 	int i;
 
 	if (size_fin == 0 && ptr != NULL)
