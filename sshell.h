@@ -23,7 +23,8 @@ typedef struct variables
 
 typedef struct builtins
 {
-	void (*f)(vars_t *);
+  char *n; 
+	void (*f)(vars_t *r);
 } builtins_t;
 
 char **_str_tokens(char *buffer, char *delimiter);
