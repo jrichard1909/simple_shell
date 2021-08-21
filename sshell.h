@@ -34,5 +34,7 @@ char *val_path(char **tokens, char *cmd);
 char *_strcat(char *dest, char *src);
 char *_strdup(char *str);
 int _strcmp(char *s1, char *s2);
-
+char (*match (vars_t *m))(vars_t *n);
+char file_exit(vars_t *vars);
+char file_number(vars_t  *vars);
 #endif
