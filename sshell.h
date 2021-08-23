@@ -20,6 +20,7 @@ typedef struct variables
 	char *buffer;
 	char **array_tokens;
 	char *program;
+	int exit_s;
 } vars_t;
 
 typedef struct builtins
@@ -42,5 +43,6 @@ int builtin_exit(vars_t *vars, int num_line, char **env);
 int _strlen(char *s);
 int numlen(int n);
 char *num_to_str(int num);
+int _atoi(char *s);
 
 #endif
