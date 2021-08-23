@@ -11,7 +11,7 @@
 char *_realloc(char *ptr, unsigned int size_ini, unsigned int size_fin)
 {
 	char *new_ptr;
-	int i;
+	unsigned int i;
 
 	if (size_fin == 0 && ptr != NULL)
 	{

@@ -9,7 +9,7 @@
 
 int _execve(vars_t *vars, int num, char **env)
 {
-	char *cmd;
+	char *cmd, *num_str;
 	int status = 0;
 	pid_t pid;
 
@@ -20,7 +20,13 @@ int _execve(vars_t *vars, int num, char **env)
 		cmd = get_path(vars->array_tokens[0], env);
 		if (cmd == NULL)
 		{
-			write(STDOUT_FILENO, "not found command\n", 18);
+			num_str = num_to_str(num);
+			write(STDOUT_FILENO, vars->program, _strlen(vars->program));
+			write(STDOUT_FILENO, ": ", 2);
+			write(STDOUT_FILENO, num_str, _strlen(num_str));
+			write(STDOUT_FILENO, ": ", 2);
+			write(STDOUT_FILENO, vars->array_tokens[0], _strlen(vars->array_tokens[0]));
+			write(STDOUT_FILENO, ": not found\n", 12);
 			return (127);
 		}
 	}

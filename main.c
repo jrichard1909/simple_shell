@@ -11,21 +11,29 @@
 int main(int ac, char **av, char **env)
 {
 	int len, countline = 0, exit_s;
-	vars_t vars ={NULL, NULL};
+	vars_t vars ={NULL, NULL, NULL};
 	size_t buff_size = 0;
+
+	(void) ac;
 	
-	write(STDOUT_FILENO, "$ ", 2);
+	vars.program = av[0];
+	if(isatty(STDIN_FILENO))	
+		write(STDOUT_FILENO, "$ ", 2);
 	while((len = getline(&(vars.buffer), &buff_size, stdin)) != EOF)
 	{
 		countline++;
 		if(len > 1)
 			vars.buffer[len - 1] = '\0';
 		vars.array_tokens = _str_tokens(vars.buffer, " ");
-		exit_s = _execve(&vars, countline, env);
-		write(STDOUT_FILENO, "$ ", 2);
+		exit_s = check_builtin(vars, countline, env);
+		if (!exit_s)
+			exit_s = _execve(&vars, countline, env);
+		if(isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "$ ", 2);
 
 	}
-	write(STDOUT_FILENO, "\n", 1);
+	if(isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, "\n", 1);
 
 	return (0);
 }
