@@ -19,11 +19,13 @@ typedef struct variables
 {
 	char *buffer;
 	char **array_tokens;
+	char *program;
 } vars_t;
 
 typedef struct builtins
 {
-	void (*f)(vars_t *);
+	char *name;
+	int (*f)(vars_t *, int num_line, char **env);
 } builtins_t;
 
 char **_str_tokens(char *buffer, char *delimiter);
@@ -34,5 +36,11 @@ char *val_path(char **tokens, char *cmd);
 char *_strcat(char *dest, char *src);
 char *_strdup(char *str);
 int _strcmp(char *s1, char *s2);
+int check_builtin(vars_t vars, int num, char **env);
+int builtin_env(vars_t *vars, int num_line, char **env);
+int builtin_exit(vars_t *vars, int num_line, char **env);
+int _strlen(char *s);
+int numlen(int n);
+char *num_to_str(int num);
 
 #endif
