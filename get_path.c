@@ -18,11 +18,14 @@ char *val_path(char **tokens, char *cmd)
 		path = _strcat(path, "/");
 		path = _strcat(path, cmd);
 		if (access(path, X_OK) == 0)
+		{
+			free(tokens);
 			return (path);
+		}
 		i++;
 		free(path);
 	}
-
+	free(tokens);
 	return (0);
 }
 
@@ -66,6 +69,7 @@ char *get_path(char *cmd, char **env)
 		path[c - 5] = '\0';
 		tokens = _str_tokens(path, ":");
 		path_ok = val_path(tokens, cmd);
+		free(path);
 		return (path_ok);
 	}
 
