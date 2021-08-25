@@ -52,7 +52,7 @@ char *val_path(char **tokens, char *cmd);
 char *_strcat(char *dest, char *src);
 char *_strdup(char *str);
 int _strcmp(char *s1, char *s2);
-int check_builtin(vars_t vars, int num, char **env);
+int check_builtin(vars_t *vars, int num, char **env);
 int builtin_env(vars_t *vars, int num_line, char **env);
 int builtin_exit(vars_t *vars, int num_line, char **env);
 int _strlen(char *s);
