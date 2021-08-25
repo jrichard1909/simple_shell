@@ -1,10 +1,10 @@
 #include "sshell.h"
 
 /**
- * _str_tokens: return tokens
- * @buffer: string
- * @delimiter: char for delimit
- * @Return: token value
+ * _strcmp - return tokens
+ * @s1: string
+ * @s2: char for delimit
+ * Return: token value
  */
 
 int _strcmp(char *s1, char *s2)

@@ -1,11 +1,11 @@
 #include "sshell.h"
 
 /**
- * _realloc: return tokens
+ * _realloc - return tokens
  * @ptr: string
  * @size_ini: initial size ptr
  * @size_fin: final size ptr
- * return: new_ptr
+ * Return: new_ptr
  */
 
 char *_realloc(char *ptr, unsigned int size_ini, unsigned int size_fin)

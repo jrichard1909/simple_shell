@@ -1,10 +1,10 @@
 #include "sshell.h"
 
 /**
- * _str_tokens: return tokens
+ * _str_tokens - return tokens
  * @buffer: string
  * @delimiter: char for delimit
- * @Return: token value
+ * Return: token value
  */
 
 char **_str_tokens(char *buffer, char *delimiter)
@@ -15,7 +15,7 @@ char **_str_tokens(char *buffer, char *delimiter)
 
 	if (buffer == NULL)
 		return (NULL);
-	token = malloc(sizeof(char*)*max_count);
+	token = malloc(sizeof(char *) * max_count);
 
 	if (token == NULL)
 		return (NULL);

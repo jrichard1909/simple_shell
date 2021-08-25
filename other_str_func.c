@@ -1,10 +1,9 @@
 #include "sshell.h"
 
 /**
- * _str_tokens: return tokens
- * @buffer: string
- * @delimiter: char for delimit
- * @Return: token value
+ * _strlen - count len of str
+ * @s: string
+ * Return: token value
  */
 
 int _strlen(char *s)
@@ -20,10 +19,9 @@ int _strlen(char *s)
 }
 
 /**
- * _str_tokens: return tokens
- * @buffer: string
- * @delimiter: char for delimit
- * @Return: token value
+ * numlen -  return tokens
+ * @n: string
+ * Return: token value
  */
 
 int numlen(int n)
@@ -38,10 +36,9 @@ int numlen(int n)
 
 
 /**
- * _str_tokens: return tokens
- * @buffer: string
- * @delimiter: char for delimit
- * @Return: token value
+ * num_to_str - return tokens
+ * @num: string
+ * Return: token value
  */
 
 char *num_to_str(int num)

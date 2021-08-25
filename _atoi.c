@@ -1,4 +1,10 @@
+#include "sshell.h"
 
+/**
+ * _atoi - return string number in str
+ * @s: string
+ * Return: int nnum
+ */
 
 int _atoi(char *s)
 {

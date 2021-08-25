@@ -14,6 +14,14 @@
 #include <stdio.h>
 #include <unistd.h>
 
+/**
+ * struct variables - Short description
+ * @buffer: First member
+ * @array_tokens: Second member
+ * @program: Third member
+ * @exit_s: status exit
+ *
+ */
 
 typedef struct variables
 {
@@ -22,6 +30,13 @@ typedef struct variables
 	char *program;
 	int exit_s;
 } vars_t;
+
+/**
+ * struct builtins - Short description
+ * @name: First member
+ * @f: Second member
+ *
+ */
 
 typedef struct builtins
 {

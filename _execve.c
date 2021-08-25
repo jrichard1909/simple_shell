@@ -1,10 +1,11 @@
 #include "sshell.h"
 
 /**
- * :_execve return tokens
+ * _execve - system call
  * @vars: string
  * @num: char for delimit
- * @Return: 0
+ * @env: enviroment
+ * Return: 0
  */
 
 int _execve(vars_t *vars, int num, char **env)
