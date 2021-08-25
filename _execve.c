@@ -29,7 +29,7 @@ int _execve(vars_t *vars, int num, char **env)
 			write(STDOUT_FILENO, ": ", 2);
 			write(STDOUT_FILENO, vars->array_tokens[0], _strlen(vars->array_tokens[0]));
 			write(STDOUT_FILENO, ": not found\n", 12);
-			free(vars->buffer);
+			/*free(vars->buffer);*/
 			free(vars->array_tokens);
 			free(cmd);
 			free(num_str);
@@ -44,7 +44,7 @@ int _execve(vars_t *vars, int num, char **env)
 	}
 
 	wait(&status);
-	free(vars->buffer);
+	/*free(vars->buffer);*/
 	free(vars->array_tokens);
 	if (ind_path == 1)
 		free(cmd);

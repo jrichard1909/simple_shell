@@ -50,7 +50,7 @@ int main(int ac, char **av, char **env)
 	while ((len = getline(&(vars.buffer), &buff_size, stdin)) != EOF)
 	{
 		countline++;
-		signal(SIGINT, handle_ctrlc);
+		/*signal(SIGINT, handle_ctrlc);*/
 		handle_ctrld(&vars, len);
 		if (len > 1)
 			vars.buffer[len - 1] = '\0';
@@ -63,8 +63,7 @@ int main(int ac, char **av, char **env)
 	}
 	if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, "\n", 1);
-	if (countline == 0)
-		free(vars.buffer);
+	free(vars.buffer);
 
 	return (0);
 }
