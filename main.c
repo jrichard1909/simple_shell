@@ -40,7 +40,7 @@ int main(int ac, char **av, char **env)
 	int len, countline = 0;
 	vars_t vars = {NULL, NULL, NULL, 0};
 	size_t buff_size = 0;
-	char delim[] = " \n\r\t"
+	char delim[] = " \n\r\t";
 
 	(void) ac;
 
