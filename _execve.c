@@ -1,5 +1,20 @@
 #include "sshell.h"
 
+void print_err_com(vars_t *vars, int num)
+{
+	char *num_str;
+	num_str = num_to_str(num);
+	write(STDERR_FILENO, vars->program, _strlen(vars->program));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, num_str, _strlen(num_str));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, vars->array_tokens[0], _strlen(vars->array_tokens[0]));
+	write(STDERR_FILENO, ": not found\n", 12);
+	free(num_str);
+}
+
+
+
 /**
  * _execve - system call
  * @vars: string
@@ -10,44 +25,35 @@
 
 int _execve(vars_t *vars, int num, char **env)
 {
-	char *cmd, *num_str;
-	int status = 0, ind_path = 0;
+	char *cmd;
+	int status = 0;
 	pid_t pid;
-
-	if (access(vars->array_tokens[0], X_OK) == 0)
-		cmd = vars->array_tokens[0];
-	else
-	{
-		cmd = get_path(vars->array_tokens[0], env);
-		ind_path = 1;
-		if (cmd == NULL)
-		{
-			num_str = num_to_str(num);
-			write(STDOUT_FILENO, vars->program, _strlen(vars->program));
-			write(STDOUT_FILENO, ": ", 2);
-			write(STDOUT_FILENO, num_str, _strlen(num_str));
-			write(STDOUT_FILENO, ": ", 2);
-			write(STDOUT_FILENO, vars->array_tokens[0], _strlen(vars->array_tokens[0]));
-			write(STDOUT_FILENO, ": not found\n", 12);
-			/*free(vars->buffer);*/
-			free(vars->array_tokens);
-			free(cmd);
-			free(num_str);
-			return (127);
-		}
-	}
 
 	pid = fork();
 	if (pid == 0)
 	{
-		execve(cmd, vars->array_tokens, env);
+		if (access(vars->array_tokens[0], X_OK) == 0)
+			cmd = vars->array_tokens[0];
+		else
+			cmd = get_path(vars->array_tokens[0], env);
+		if (cmd != NULL)
+		{
+			if (execve(cmd, vars->array_tokens, env) == -1)
+				perror(vars->program);
+			free(cmd);
+		}
+		else
+		{
+			print_err_com(vars, num);
+			errno = 127;
+		}
+		free(vars->array_tokens);
+		_exit(errno);
 	}
-
 	wait(&status);
-	/*free(vars->buffer);*/
 	free(vars->array_tokens);
-	if (ind_path == 1)
-		free(cmd);
-
-	return (0);
+	/*if (ind_path == 1)
+		free(cmd);*/
+	errno = status % 255;
+	return (errno);
 }

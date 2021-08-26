@@ -54,9 +54,8 @@ int main(int ac, char **av, char **env)
 		vars.array_tokens = _str_tokens(vars.buffer, delim);
 		if (vars.array_tokens[0] != NULL)
 		{
-			vars.exit_s = check_builtin(&vars, countline, env);
-			if (!vars.exit_s)
-				vars.exit_s = _execve(&vars, countline, env);
+			if (!check_builtin(&vars, countline, env))
+				_execve(&vars, countline, env);
 		}
 		else
 			free(vars.array_tokens);

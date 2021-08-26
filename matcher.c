@@ -61,7 +61,9 @@ int builtin_exit(vars_t *vars, int num, char **env)
 	}
 	free(vars->buffer);
 	free(vars->array_tokens);
-	exit(exit_status);
+	if (errno > 256)
+		errno %= 256;
+	exit(errno);
 }
 
 /**
