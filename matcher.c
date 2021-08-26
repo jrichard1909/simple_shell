@@ -22,7 +22,6 @@ int builtin_env(vars_t *vars, int num, char **env)
 		i++;
 	}
 
-	free(vars->buffer);
 	free(vars->array_tokens);
 
 	return (1);

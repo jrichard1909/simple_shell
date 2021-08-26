@@ -40,6 +40,7 @@ int main(int ac, char **av, char **env)
 	int len, countline = 0;
 	vars_t vars = {NULL, NULL, NULL, 0};
 	size_t buff_size = 0;
+	char delim[] = " \n\r\t"
 
 	(void) ac;
 
@@ -50,7 +51,7 @@ int main(int ac, char **av, char **env)
 	while ((len = getline(&(vars.buffer), &buff_size, stdin)) != EOF)
 	{
 		countline++;
-		vars.array_tokens = _str_tokens(vars.buffer, " \n\r\t");
+		vars.array_tokens = _str_tokens(vars.buffer, delim);
 		if (vars.array_tokens[0] != NULL)
 		{
 			vars.exit_s = check_builtin(&vars, countline, env);
