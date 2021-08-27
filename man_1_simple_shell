@@ -5,6 +5,15 @@
 .SH SYNOPSIS
 .B sshell.h
 
+(your_terminal)$ gcc -Wall -Werror -Wextra -pedantic -Wno-format *.c -o simple_shell
+Non-Interactive Mode
+
+echo "ls -l" | ./simple_shell
+Interactive Mode* Activate the shell
+
+(your_terminal)$ ./simple_shell
+$
+
 .SH DESCRIPTION
 Run custom command line interpreter on top of a full shell environment
 
