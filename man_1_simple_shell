@@ -1,0 +1,55 @@
+.Man Page for Project 0x16. C - Simple Shell
+.TH man 1 "26 August 2021" "Version 1.0"
+.SH NAME
+.B simple_shell - simple command line interpreter
+.SH SYNOPSIS
+.B sshell.h
+
+.SH DESCRIPTION
+Run custom command line interpreter on top of a full shell environment
+
+.I COMMAND
+is read from user input, then interpreted and executed by the custom shell
+
+.I OPTION(S)
+refers to the various flags located in command line interpreter root system directories that allow the user to be more specific in their interactions with the command
+
+.B SHELL
+First is initiated on top of another shell environment, and the user is prompted to enter a command using $
+
+The command is read by the custom shell, then begins searching for builtin commands that share the same name as the inputted command
+
+If the command read is not found, custom shell searches PATH, which generally will be root directories, for the command in order to execute it
+
+In addition to arguments and options, the custom shell also has the ability to print the current working environment, as well as execute the builtin command exit()
+
+The custom shell is also capable of handling and printing error messages and re-entering the custom shell should the given command remains undiscovered
+
+.SH EXAMPLE
+
+$  /bin/ls -l
+_atoi.c    generate_authors  main.c              other_str_func.c  sshell.h   _strdup.c
+AUTHORS    get_path.c        man_1_simple_shell  README.md         _strcat.c  _strtok.c
+_execve.c  hsh               matcher.c           _realloc.c        _strcmp.c
+
+$ /bin/ls -l
+-rw-r--r-- 1 root root   315 Aug 25 16:43 _atoi.c
+-rw-r--r-- 1 root root   253 Aug 22 11:47 AUTHORS
+-rw-r--r-- 1 root root  1384 Aug 26 19:05 _execve.c
+drwxr-xr-x 2 root root    33 Aug 17 16:13 generate_authors
+-rw-r--r-- 1 root root  1156 Aug 25 16:43 get_path.c
+-rwxr-xr-x 1 root root 22448 Aug 26 21:03 hsh
+-rw-r--r-- 1 root root  1295 Aug 26 19:05 main.c
+-rw-r--r-- 1 root root  1280 Aug 26 20:57 man_1_simple_shell
+-rw-r--r-- 1 root root  1711 Aug 26 19:05 matcher.c
+-rw-r--r-- 1 root root   979 Aug 25 16:43 other_str_func.c
+-rw-r--r-- 1 root root   807 Aug 17 20:24 README.md
+-rw-r--r-- 1 root root   666 Aug 25 16:43 _realloc.c
+-rw-r--r-- 1 root root  1407 Aug 26 19:05 sshell.h
+-rw-r--r-- 1 root root   443 Aug 25 16:43 _strcat.c
+-rw-r--r-- 1 root root   279 Aug 25 16:43 _strcmp.c
+-rw-r--r-- 1 root root   304 Aug 25 16:43 _strdup.c
+-rw-r--r-- 1 root root   611 Aug 25 16:43 _strtok.c
+
+.SH AUTHORS
+Diego Morey
