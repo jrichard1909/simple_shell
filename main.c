@@ -37,7 +37,7 @@ void handle_ctrld(vars_t *vars, int len)
 
 int main(int ac, char **av, char **env)
 {
-	int len, countline = 0;
+	int len, countline = 0, copy_errno;
 	vars_t vars = {NULL, NULL, NULL, 0};
 	size_t buff_size = 0;
 	char delim[] = " \n\r\t";
@@ -59,12 +59,15 @@ int main(int ac, char **av, char **env)
 		}
 		else
 			free(vars.array_tokens);
+		copy_errno = errno;
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "$ ", 2);
+		errno = copy_errno;
 	}
 	if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, "\n", 1);
 	handle_ctrld(&vars, len);
 
-	return (0);
+	return (errno);
+
 }

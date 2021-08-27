@@ -42,26 +42,26 @@ int builtin_exit(vars_t *vars, int num, char **env)
 	(void)env;
 
 	if (vars->array_tokens[1] != NULL)
-		exit_status = _atoi(vars->array_tokens[1]);
-	else if (vars->exit_s != 0)
-		exit_status = vars->exit_s;
-
-	if (exit_status == -1)
 	{
-		write(STDIN_FILENO, vars->program, _strlen(vars->program));
-		write(STDIN_FILENO, ": ", 2);
-		num_str = num_to_str(num);
-		write(STDIN_FILENO, num_str, _strlen(num_str));
-		write(STDIN_FILENO, ": exit: Ilegal number: ", 23);
-		write(STDIN_FILENO, vars->array_tokens[1], _strlen(vars->array_tokens[1]));
-		write(STDIN_FILENO, "\n", 1);
-		free(vars->buffer);
-		free(vars->array_tokens);
-		return (2);
+		errno = 0;
+		exit_status = _atoi(vars->array_tokens[1]);
+		if (exit_status == -1)
+		{
+			write(STDIN_FILENO, vars->program, _strlen(vars->program));
+			write(STDIN_FILENO, ": ", 2);
+			num_str = num_to_str(num);
+			write(STDIN_FILENO, num_str, _strlen(num_str));
+			write(STDIN_FILENO, ": exit: Ilegal number: ", 23);
+			write(STDIN_FILENO, vars->array_tokens[1], _strlen(vars->array_tokens[1]));
+			write(STDIN_FILENO, "\n", 1);
+			free(vars->buffer);
+			free(vars->array_tokens);
+			return (2);
+		}
 	}
 	free(vars->buffer);
 	free(vars->array_tokens);
-	if (errno > 256)
+	if (errno > 255)
 		errno %= 256;
 	exit(errno);
 }
