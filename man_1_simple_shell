@@ -5,6 +5,8 @@
 .SH SYNOPSIS
 .B sshell.h
 
+Shell always starts when user logs in or starts terminal
+
 (your_terminal)$ gcc -Wall -Werror -Wextra -pedantic -Wno-format *.c -o simple_shell
 Non-Interactive Mode
 
