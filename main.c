@@ -47,6 +47,7 @@ int main(int ac, char **av, char **env)
 	vars.program = av[0];
 	if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, "$ ", 2);
+	errno = 0;
 	signal(SIGINT, handle_ctrlc);
 	while ((len = getline(&(vars.buffer), &buff_size, stdin)) != EOF)
 	{
