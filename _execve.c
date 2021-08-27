@@ -62,6 +62,7 @@ int _execve(vars_t *vars, int num, char **env)
 				print_err_com(vars, num);
 			}
 			free(vars->array_tokens);
+			free(vars->buffer);
 			_exit(errno);
 		}
 	}
