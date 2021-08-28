@@ -50,7 +50,7 @@ int builtin_exit(vars_t *vars, int num, char **env)
 			write(STDERR_FILENO, ": ", 2);
 			num_str = num_to_str(num);
 			write(STDERR_FILENO, num_str, _strlen(num_str));
-			write(STDERR_FILENO, ": exit: Ilegal number: ", 23);
+			write(STDERR_FILENO, ": exit: Illegal number: ", 23);
 			write(STDERR_FILENO, vars->array_tokens[1], _strlen(vars->array_tokens[1]));
 			write(STDERR_FILENO, "\n", 1);
 			free(num_str);
