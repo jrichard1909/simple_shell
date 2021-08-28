@@ -55,7 +55,8 @@ int builtin_exit(vars_t *vars, int num, char **env)
 			write(STDERR_FILENO, "\n", 1);
 			free(num_str);
 			free(vars->array_tokens);
-			return (2);
+			errno = 2;
+			return (errno);
 		}
 	}
 	free(vars->buffer);

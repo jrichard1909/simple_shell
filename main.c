@@ -23,7 +23,7 @@ void handle_ctrld(vars_t *vars, int len)
 	if (len == -1)
 	{
 		free(vars->buffer);
-		exit(0);
+		exit(errno);
 	}
 }
 
@@ -65,8 +65,10 @@ int main(int ac, char **av, char **env)
 			write(STDOUT_FILENO, "$ ", 2);
 		errno = copy_errno;
 	}
+	copy_errno = errno;
 	if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, "\n", 1);
+	errno = copy_errno;
 	handle_ctrld(&vars, len);
 
 	return (errno);
