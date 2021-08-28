@@ -37,24 +37,23 @@ int builtin_env(vars_t *vars, int num, char **env)
 
 int builtin_exit(vars_t *vars, int num, char **env)
 {
-	int exit_status = 0;
 	char *num_str;
 	(void)env;
 
 	if (vars->array_tokens[1] != NULL)
 	{
 		errno = 0;
-		exit_status = _atoi(vars->array_tokens[1]);
-		if (exit_status == -1)
+		errno = _atoi(vars->array_tokens[1]);
+		if (errno == -1)
 		{
-			write(STDIN_FILENO, vars->program, _strlen(vars->program));
-			write(STDIN_FILENO, ": ", 2);
+			write(STDERR_FILENO, vars->program, _strlen(vars->program));
+			write(STDERR_FILENO, ": ", 2);
 			num_str = num_to_str(num);
-			write(STDIN_FILENO, num_str, _strlen(num_str));
-			write(STDIN_FILENO, ": exit: Ilegal number: ", 23);
-			write(STDIN_FILENO, vars->array_tokens[1], _strlen(vars->array_tokens[1]));
-			write(STDIN_FILENO, "\n", 1);
-			free(vars->buffer);
+			write(STDERR_FILENO, num_str, _strlen(num_str));
+			write(STDERR_FILENO, ": exit: Ilegal number: ", 23);
+			write(STDERR_FILENO, vars->array_tokens[1], _strlen(vars->array_tokens[1]));
+			write(STDERR_FILENO, "\n", 1);
+			free(num_str);
 			free(vars->array_tokens);
 			return (2);
 		}
@@ -81,7 +80,6 @@ int check_builtin(vars_t *vars, int num, char **env)
 		{"env", builtin_env},
 		{"exit", builtin_exit},
 		{NULL, NULL}};
-
 	for (i = 0; check[i].name; i++)
 	{
 		if (_strcmp(check[i].name, vars->array_tokens[0]) == 0)
