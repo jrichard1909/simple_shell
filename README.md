@@ -1,4 +1,6 @@
 # C - Simple Shell
+### Description
+Create interface that allows the input of commands from the Unix project, this shell can interpret instructions.
 ### Objective 📋
 * Coding your own shell
 ### Requirements 📌
