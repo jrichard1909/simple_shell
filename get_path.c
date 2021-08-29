@@ -38,23 +38,23 @@ char *val_path(char **tokens, char *cmd)
 
 char *get_path(char *cmd, char **env)
 {
-	char *path, str[5], **tokens, *path_ok;
+	char *path, str[6], **tokens, *path_ok;
 	int i = 0, j, c;
 
 	while (env[i] != NULL)
 	{
-		for (j = 0; j < 4; j++)
+		for (j = 0; j < 5; j++)
 			str[j] = env[i][j];
 		str[j] = '\0';
 
-		if (_strcmp(str, "PATH") == 0)
+		if (_strcmp(str, "PATH=") == 0)
 			break;
 		i++;
 	}
 
 	if (env[i] != NULL)
 	{
-		c = ++j;
+		c = j;
 		while (env[i][j])
 			j++;
 
