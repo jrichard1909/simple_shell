@@ -35,7 +35,8 @@ int _execve(vars_t *vars, int num, char **env)
 	char *cmd;
 	int status = 0;
 	pid_t pid;
-
+	
+	pid = fork();
 	if (pid == 0)
 	{
 		if (access(vars->array_tokens[0], X_OK) == 0)
