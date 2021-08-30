@@ -36,15 +36,6 @@ int _execve(vars_t *vars, int num, char **env)
 	int status = 0;
 	pid_t pid;
 
-	if (access(vars->array_tokens[0], X_OK) &&
-			!get_path(vars->array_tokens[0], env))
-	{
-		errno = 127;
-		print_err_com(vars, num);
-		free(vars->array_tokens);
-		return (errno);
-	}
-	pid = fork();
 	if (pid == 0)
 	{
 		if (access(vars->array_tokens[0], X_OK) == 0)
@@ -61,6 +52,11 @@ int _execve(vars_t *vars, int num, char **env)
 				if (execve(cmd, vars->array_tokens, env) == -1)
 					perror(vars->program);
 				free(cmd);
+			}
+			else
+			{
+				errno = 127;
+				print_err_com(vars, num);
 			}
 			free(vars->buffer);
 		}
