@@ -41,10 +41,11 @@ char *get_path(char *cmd, char **env)
 	char *path, str[6], **tokens, *path_ok;
 	int i = 0, j, c;
 
-	while (env[i] != NULL)
+	(void) env;
+	while (environ[i] != NULL)
 	{
 		for (j = 0; j < 5; j++)
-			str[j] = env[i][j];
+			str[j] = environ[i][j];
 		str[j] = '\0';
 
 		if (_strcmp(str, "PATH=") == 0)
@@ -52,18 +53,18 @@ char *get_path(char *cmd, char **env)
 		i++;
 	}
 
-	if (env[i] != NULL)
+	if (environ[i] != NULL)
 	{
 		c = j;
-		while (env[i][j])
+		while (environ[i][j])
 			j++;
 
 		path = malloc(j - c + 1);
 		if (path == NULL)
 			return (0);
-		while (env[i][c])
+		while (environ[i][c])
 		{
-			path[c - 5] = env[i][c];
+			path[c - 5] = environ[i][c];
 			c++;
 		}
 		path[c - 5] = '\0';

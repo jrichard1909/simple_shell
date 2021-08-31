@@ -16,6 +16,8 @@
 #include <errno.h>
 #include <signal.h>
 
+extern char **environ;
+
 /**
  * struct variables - Short description
  * @buffer: First member
